@@ -25,7 +25,6 @@ export default function Home() {
     const firstCountryIndex = lastGameIndex - itemsPerPage;
     const currentGame = data.slice(firstCountryIndex, lastGameIndex);
     const paginate = (pageNum: number) => {
-        console.log('pageNum', pageNum)
         setCurrentPage(pageNum)
     };
 
