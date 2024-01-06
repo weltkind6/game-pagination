@@ -4,6 +4,7 @@ import {Pagination, PaginationItem, PaginationLink} from "reactstrap";
 interface Props {
     totalPages: number;
     itemsPerPage: number;
+    currentPage: number;
     paginate: (num: number) => void;
     nextPage: () => void;
     previousPage: () => void;
@@ -14,7 +15,8 @@ const PaginationPage = ({
                             itemsPerPage,
                             nextPage,
                             paginate,
-                            previousPage
+                            previousPage,
+                            currentPage,
 }: Props) => {
     const pageNumbers = [];
 
@@ -38,7 +40,6 @@ const PaginationPage = ({
                             <PaginationLink
                                 href="#"
                                 onClick={() => paginate(number)}>
-                                {number}
                             </PaginationLink>
                         </PaginationItem>)
                 }

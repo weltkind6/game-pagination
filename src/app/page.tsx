@@ -3,23 +3,31 @@ import styles from './page.module.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Games from "@/app/components/Games/Games";
+import GamesPage from "@/app/components/Games/GamesPage";
 import PaginationPage from "@/app/components/Pagination/PaginationPage";
-import Image from 'next/image'
-
 
 interface Game {
-  title: string
+    isLoading: boolean
 }
 export default function Home() {
     const [data, setData] = useState<Game[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(25);
+    const [isLoading, setIsLoading] = useState(false);
+    console.log('currentPage', currentPage)
 
     useEffect(() => {
-        axios.get('https://nextjs-test-pi-hazel-56.vercel.app/data/games.json')
-            .then(response => setData(response.data))
-            .catch(err => console.log(err));
+        const getGames = async () => {
+            setIsLoading(true);
+            try {
+                const response = await axios.get('https://nextjs-test-pi-hazel-56.vercel.app/data/games.json');
+                setData(response.data);
+            } catch (err) {
+                console.log(err);
+            }
+            setIsLoading(false);
+        }
+        getGames()
     }, [])
 
     const lastGameIndex = currentPage * itemsPerPage;
@@ -31,12 +39,11 @@ export default function Home() {
     const nextPage = () => setCurrentPage(prev => prev + 1);
     const previousPage = () => setCurrentPage(prev => prev - 1);
 
-
-
     return (
     <main className={styles.main}>
-       <Games
+       <GamesPage
            currentGames={currentGamesData}
+           isLoading={isLoading}
        />
         <PaginationPage
             totalPages={data.length}
@@ -44,8 +51,8 @@ export default function Home() {
             paginate={paginate}
             nextPage={nextPage}
             previousPage={previousPage}
+            currentPage={currentPage}
         />
-
     </main>
   )
 }
