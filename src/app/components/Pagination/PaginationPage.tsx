@@ -1,5 +1,6 @@
 import React from 'react';
 import {Pagination, PaginationItem, PaginationLink} from "reactstrap";
+import styles from './styles.module.css';
 
 interface Props {
     totalPages: number;
@@ -25,7 +26,7 @@ const PaginationPage = ({
     }
 
     return (
-        <nav>
+        <nav className={styles.wrapper}>
             <Pagination>
                 <PaginationItem>
                     <PaginationLink
@@ -40,6 +41,7 @@ const PaginationPage = ({
                             <PaginationLink
                                 href="#"
                                 onClick={() => paginate(number)}>
+                                {number}
                             </PaginationLink>
                         </PaginationItem>)
                 }

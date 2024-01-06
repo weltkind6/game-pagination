@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import Image from "next/image";
-import styles from './styles.module.css';
-import {Card, CardBody, CardHeader} from "reactstrap";
 import Link from "next/link";
+import {Card, CardBody, CardHeader} from "reactstrap";
+import styles from './styles.module.css';
 
 interface Game {
     title?: string;
@@ -40,7 +40,6 @@ const GamesPage = ({currentGames, isLoading}: Props) => {
                                    categories,
                                    seo_title,
             }) =>
-                    <Link href={gameUrl}>
                         <Card
                             key={title}
                             className={styles.card}
@@ -48,13 +47,14 @@ const GamesPage = ({currentGames, isLoading}: Props) => {
                                 setGameUrl(`/${provider}/${seo_title}`);
                             }}
                         >
-                            <CardHeader>
-                                <div>Game: <strong>{title}</strong></div>
+                            <CardHeader className={styles.cardHeader}>
+                                <h6>{title}</h6>
                                 <div>Provider: <strong>{provider}</strong></div>
                                 <div>
                                     {/*{categories}*/}
                                 </div>
                             </CardHeader>
+                            <Link href={gameUrl}>
                             <CardBody>
                                 <Image
                                     src={`https://d2norla3tyc4cn.cloudfront.net/i/s3/${identifier}.webp`}
@@ -64,8 +64,8 @@ const GamesPage = ({currentGames, isLoading}: Props) => {
                                     className={styles.img}
                                 />
                             </CardBody>
+                            </Link>
                         </Card>
-                    </Link>
                 )
             }
         </div>

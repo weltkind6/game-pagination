@@ -3,7 +3,7 @@ import styles from './page.module.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GamesPage from "@/app/components/Games/GamesPage";
+import GamesPage from "@/app/components/GamesPage/GamesPage";
 import PaginationPage from "@/app/components/Pagination/PaginationPage";
 
 interface Game {
