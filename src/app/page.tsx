@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Games from "@/app/components/Games/Games";
-import Pagination from "@/app/components/Pagination/Pagination";
+import PaginationPage from "@/app/components/Pagination/PaginationPage";
 
 
 interface Game {
@@ -13,7 +13,7 @@ interface Game {
 export default function Home() {
     const [data, setData] = useState<Game[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(10);
+    const [itemsPerPage] = useState(25);
 
     useEffect(() => {
         axios.get('https://nextjs-test-pi-hazel-56.vercel.app/data/games.json')
@@ -23,22 +23,26 @@ export default function Home() {
 
     const lastGameIndex = currentPage * itemsPerPage;
     const firstCountryIndex = lastGameIndex - itemsPerPage;
-    const currentGame = data.slice(firstCountryIndex, lastGameIndex);
+    const currentGames = data.slice(firstCountryIndex, lastGameIndex);
     const paginate = (pageNum: number) => {
         setCurrentPage(pageNum)
     };
+    const nextPage = () => setCurrentPage(prev => prev + 1);
+    const previousPage = () => setCurrentPage(prev => prev - 1);
 
 
 
     return (
     <main className={styles.main}>
        <Games
-           gamesData={currentGame}
+           currentGames={currentGames}
        />
-        <Pagination
+        <PaginationPage
             totalPages={data.length}
             itemsPerPage={itemsPerPage}
             paginate={paginate}
+            nextPage={nextPage}
+            previousPage={previousPage}
         />
     </main>
   )
