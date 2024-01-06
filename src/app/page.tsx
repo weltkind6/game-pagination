@@ -5,6 +5,7 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Games from "@/app/components/Games/Games";
 import PaginationPage from "@/app/components/Pagination/PaginationPage";
+import Image from 'next/image'
 
 
 interface Game {
@@ -22,8 +23,8 @@ export default function Home() {
     }, [])
 
     const lastGameIndex = currentPage * itemsPerPage;
-    const firstCountryIndex = lastGameIndex - itemsPerPage;
-    const currentGames = data.slice(firstCountryIndex, lastGameIndex);
+    const firstGameIndex = lastGameIndex - itemsPerPage;
+    const currentGamesData = data.slice(firstGameIndex, lastGameIndex);
     const paginate = (pageNum: number) => {
         setCurrentPage(pageNum)
     };
@@ -35,7 +36,7 @@ export default function Home() {
     return (
     <main className={styles.main}>
        <Games
-           currentGames={currentGames}
+           currentGames={currentGamesData}
        />
         <PaginationPage
             totalPages={data.length}
@@ -44,6 +45,7 @@ export default function Home() {
             nextPage={nextPage}
             previousPage={previousPage}
         />
+
     </main>
   )
 }
