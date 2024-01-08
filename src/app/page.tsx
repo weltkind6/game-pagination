@@ -14,7 +14,6 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(25);
     const [isLoading, setIsLoading] = useState(false);
-    console.log('currentPage', currentPage)
 
     useEffect(() => {
         const getGames = async () => {
