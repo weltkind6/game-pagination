@@ -17,7 +17,6 @@ const PaginationPage = ({
                             nextPage,
                             paginate,
                             previousPage,
-                            currentPage,
 }: Props) => {
     const pageNumbers = [];
 

@@ -6,8 +6,10 @@
 }
 
 .card {
-    box-shadow: rgba(17, 17, 26, 0.1) 0 4px 16px, rgba(17, 17, 26, 0.05) 0 8px 32px;
     cursor: pointer;
     max-width: 332px;
 }
 
+.card:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0 4px 16px, rgba(17, 17, 26, 0.05) 0 8px 32px;
+}

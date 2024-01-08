@@ -51,7 +51,7 @@ const GamesPage = ({currentGames, isLoading}: Props) => {
                                 <h6>{title}</h6>
                                 <div>Provider: <strong>{provider}</strong></div>
                                 <div>
-                                    {/*{categories}*/}
+                                    Category: <strong>{categories && categories[0]}</strong>
                                 </div>
                             </CardHeader>
                             <Link href={gameUrl}>
